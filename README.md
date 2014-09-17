@@ -1,4 +1,4 @@
-uberlog-hs
+Uberlog-Hs
 ==========
 
-UberLog haskell client
+UberLog Haskell Client.

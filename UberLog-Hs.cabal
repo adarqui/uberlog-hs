@@ -1,0 +1,29 @@
+name:                   UberLog-Hs
+version:                0.0.1
+stability:              provisional
+license:                BSD3
+license-file:           LICENSE
+
+cabal-version:          >= 1.8
+build-type:             Simple
+
+author:                 Andrew Darqui <andrew.darqui@gmail.com>
+maintainer:             Andrew Darqui <andrew.darqui@gmail.com>
+homepage:               github.com/adarqui/UberLog-Hs
+
+category:               Network
+synopsis:               Logging
+
+Library
+ hs-source-dirs:        src
+ exposed-modules:
+                        Network.UberLog
+
+ build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit
+ ghc-options:           -Wall -rtsopts
+
+Executable              post
+ main-is:               post.hs
+ hs-source-dirs:        tools
+ build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, UberLog-Hs
+ ghc-options:           -Wall -threaded -rtsopts -O2
