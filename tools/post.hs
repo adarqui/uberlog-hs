@@ -1,29 +1,20 @@
-{-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
-import Data.Aeson
-import GHC.Generics
+{-# LANGUAGE OverloadedStrings #-}
 import System.Environment
 import Control.Monad
 
 import qualified Network.UberLog as Uber
-import qualified Data.ByteString.Lazy as L
-
-data Packet = Packet { _argv :: [String] } deriving (Show, Read, Generic)
-
-instance ToJSON Packet
-instance FromJSON Packet
+import qualified Data.ByteString.Char8 as C
 
 main :: IO ()
 main = do
  argv <- getArgs
- main' argv
-
-main' argv = do
- con <- Uber.new Uber.defaultUrl
- putStrLn "posting..."
- forM_
-  [Uber.debug, Uber.info, Uber.success, Uber.warning, Uber.error]
-  (\fn -> fn "category" "slug" s con)
- putStrLn "done."
+ case argv of
+  (level:category:slug:params:[]) -> do
+   con <- Uber.new Uber.defaultUrl
+   putStrLn "posting..."
+   _ <- Uber.log (p level) (p category) (p slug) (p params) con
+   putStrLn "done."
+  otherwise -> error "usage: ./post <level> <category> <slug> <json-string>"
+ return ()
  where
-  p = Packet { _argv = argv }
-  s = L.toStrict (encode p)
+  p s = C.pack s

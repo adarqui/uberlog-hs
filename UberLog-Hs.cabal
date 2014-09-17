@@ -27,3 +27,9 @@ Executable              post
  hs-source-dirs:        tools
  build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, UberLog-Hs
  ghc-options:           -Wall -threaded -rtsopts -O2
+
+Executable              post-test
+ main-is:               post-test.hs
+ hs-source-dirs:        tools
+ build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, UberLog-Hs
+ ghc-options:           -Wall -threaded -rtsopts -O2
