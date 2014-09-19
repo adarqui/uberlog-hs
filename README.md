@@ -9,5 +9,5 @@ Example
 
 ```
 make
-for i in `seq 1 100`; do ./.cabal-sandbox/bin/post level cat slug payload ; done
+for i in `seq 1 100`; do ./.cabal-sandbox/bin/post namespace level category slug "[(\"counter\",\"$i\")]" "{\"i\":\"$i\"}"; done
 ```
