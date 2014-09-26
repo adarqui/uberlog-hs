@@ -63,4 +63,4 @@ error = log "error"
 
 getFormattedTime = do
  t <- getCurrentTime
- return $ C.pack $ formatISO8601Micros t
+ return $ C.pack $ formatISO8601Millis t
