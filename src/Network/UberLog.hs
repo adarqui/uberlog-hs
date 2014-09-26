@@ -62,4 +62,4 @@ error = log "error"
 
 getFormattedTime = do
  t <- getCurrentTime
- return $ C.pack $ show $ formatTime defaultTimeLocale "%Y-%m-%dT%T.%qZ" t
+ return $ C.pack $ formatTime defaultTimeLocale "%Y-%m-%dT%T.%qZ" t
