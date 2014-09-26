@@ -19,6 +19,7 @@ import Data.Time.Clock
 import Data.List
 import qualified Data.ByteString.Char8 as C
 import qualified Data.ByteString.Lazy as L
+import qualified Data.ByteString as B
 import Prelude hiding (log, error)
 
 data ULog = ULog {
@@ -41,14 +42,14 @@ new url namespace category slug headers = do
   _slug = slug
  }
 
-log :: C.ByteString -> C.ByteString -> RequestHeaders -> ULog -> IO (Response L.ByteString)
+log :: C.ByteString -> B.ByteString -> RequestHeaders -> ULog -> IO (Response L.ByteString)
 log level params headers ULog{..} = do
  t <- getFormattedTime
  let req = _req { requestHeaders = h ++ headers ++ [("__date",t)] }
  withManager $
   httpLbs req {
    path = "log/" <> (C.concat $ intersperse "/" [level, _category, _slug, ""]),
-   queryString = params
+   requestBody = RequestBodyBS params
   }
  where
   h = requestHeaders _req
