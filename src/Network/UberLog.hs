@@ -16,6 +16,7 @@ import Network.HTTP.Types
 import System.Locale
 import Data.Time.Format
 import Data.Time.Clock
+import Data.Time.ISO8601
 import Data.List
 import qualified Data.ByteString.Char8 as C
 import qualified Data.ByteString.Lazy as L
@@ -62,4 +63,4 @@ error = log "error"
 
 getFormattedTime = do
  t <- getCurrentTime
- return $ C.pack $ formatTime defaultTimeLocale "%Y-%m-%dT%T.%qZ" t
+ return $ C.pack $ formatISO8601Micros t

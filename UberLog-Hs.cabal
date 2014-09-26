@@ -19,11 +19,11 @@ Library
  exposed-modules:
                         Network.UberLog
 
- build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, http-types, time, old-locale
+ build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, http-types, time, old-locale, iso8601-time
  ghc-options:           -Wall -rtsopts
 
 Executable              post
  main-is:               post.hs
  hs-source-dirs:        tools
- build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, http-types, time, old-locale, UberLog-Hs
+ build-depends:         base >= 3 && <5, bytestring, aeson, http-conduit, http-types, UberLog-Hs
  ghc-options:           -Wall -threaded -rtsopts -O2
